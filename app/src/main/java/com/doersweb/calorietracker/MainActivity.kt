@@ -6,11 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.doersweb.calorietracker.navigation.navigate
 import com.doersweb.calorietracker.ui.theme.CalorieTrackerTheme
+import com.doersweb.core.navigation.Routes
 import com.doersweb.onboarding_presentation.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +25,39 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WelcomeScreen()
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Routes.WELCOME
+                    ) {
+                        composable(Routes.WELCOME) {
+                            WelcomeScreen(onNavigate = navController::navigate)
+                        }
+                        composable(Routes.AGE) {
+
+                        }
+                        composable(Routes.GENDER) {
+
+                        }
+                        composable(Routes.HEIGHT) {
+
+                        }
+                        composable(Routes.WEIGHT) {
+
+                        }
+                        composable(Routes.NUTRIENT_GOAL) {
+
+                        }
+                        composable(Routes.ACTIVITY) {
+
+                        }
+                        composable(Routes.TRACKER_OVERVIEW) {
+
+                        }
+                        composable(Routes.SEARCH) {
+
+                        }
+                    }
                 }
             }
         }

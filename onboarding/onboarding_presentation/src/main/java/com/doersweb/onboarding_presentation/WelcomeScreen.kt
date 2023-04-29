@@ -14,11 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.doersweb.core.R
+import com.doersweb.core.navigation.Routes
+import com.doersweb.core.util.UiEvent
 import com.doersweb.core_ui.LocalSpacing
 import com.doersweb.onboarding_presentation.shared_composables.ActionButton
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onNavigate: (UiEvent.Navigate) -> Unit
+) {
     val spacing = LocalSpacing.current
     Column(
         modifier = Modifier.fillMaxSize()
@@ -34,7 +38,7 @@ fun WelcomeScreen() {
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         ActionButton(
             text = stringResource(id = R.string.next)
-            , onClick = { /*TODO*/ },
+            , onClick = { onNavigate(UiEvent.Navigate(Routes.AGE)) },
             isEnabled = true,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
