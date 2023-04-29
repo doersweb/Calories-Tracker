@@ -1,11 +1,17 @@
 package com.doersweb.calorietracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,21 +20,24 @@ import com.doersweb.calorietracker.navigation.navigate
 import com.doersweb.calorietracker.ui.theme.CalorieTrackerTheme
 import com.doersweb.core.navigation.Routes
 import com.doersweb.onboarding_presentation.WelcomeScreen
+import com.doersweb.onboarding_presentation.age.AgeScreen
 import com.doersweb.onboarding_presentation.gender.GenderScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             CalorieTrackerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
+                val navController = rememberNavController()
+                val snackBarState = remember { SnackbarHostState() }
+                Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    snackbarHost = { SnackbarHost(hostState = snackBarState) }
                 ) {
-                    val navController = rememberNavController()
                     NavHost(
                         navController = navController,
                         startDestination = Routes.WELCOME
@@ -37,7 +46,7 @@ class MainActivity : ComponentActivity() {
                             WelcomeScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.AGE) {
-
+                            AgeScreen(onNavigate = navController::navigate, snackBarState = snackBarState)
                         }
                         composable(Routes.GENDER) {
                             GenderScreen(onNavigate = navController::navigate)

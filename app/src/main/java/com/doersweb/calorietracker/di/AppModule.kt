@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.doersweb.core.data.UserPreferences
 import com.doersweb.core.domain.preferences.Preferences
+import com.doersweb.core.domain.usecases.FilterOutDecimals
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,4 +31,8 @@ object AppModule {
     ): SharedPreferences {
         return app.getSharedPreferences("shared_pref", MODE_PRIVATE)
     }
+
+    @Provides
+    @Singleton
+    fun filterOutDecimalUseCase(): FilterOutDecimals = FilterOutDecimals()
 }

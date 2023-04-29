@@ -9,4 +9,9 @@
   <string name="whats_your_gender">What\'s your gender ?</string>
   <string name="male">Male</string>
   <string name="female">Female</string>
+  <string name="error_age_cannot_be_empty">Age cannot be empty</string>
+
+  <!-- Age Screen -->
+  <string name="whats_your_age">What\'s your age ?</string>
+  <string name="unit_years">years</string>
 </resources>
