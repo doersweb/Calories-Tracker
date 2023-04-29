@@ -14,7 +14,10 @@ import com.doersweb.calorietracker.navigation.navigate
 import com.doersweb.calorietracker.ui.theme.CalorieTrackerTheme
 import com.doersweb.core.navigation.Routes
 import com.doersweb.onboarding_presentation.WelcomeScreen
+import com.doersweb.onboarding_presentation.gender.GenderScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                         composable(Routes.GENDER) {
-
+                            GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.HEIGHT) {
 

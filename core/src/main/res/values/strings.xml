@@ -4,4 +4,9 @@
   <!-- Welcome Screen` -->
   <string name="welcome_text">Hello! Help us know more about you :)</string>
   <string name="next">Next</string>
+
+  <!-- Gender Screen` -->
+  <string name="whats_your_gender">What\'s your gender ?</string>
+  <string name="male">Male</string>
+  <string name="female">Female</string>
 </resources>
