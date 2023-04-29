@@ -25,6 +25,7 @@ import com.doersweb.onboarding_presentation.age.AgeScreen
 import com.doersweb.onboarding_presentation.gender.GenderScreen
 import com.doersweb.onboarding_presentation.goal.GoalScreen
 import com.doersweb.onboarding_presentation.height.HeightScreen
+import com.doersweb.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.doersweb.onboarding_presentation.weight.WeightScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,11 +71,17 @@ class MainActivity : ComponentActivity() {
                                 snackBarState = snackBarState
                             )
                         }
-                        composable(Routes.NUTRIENT_GOAL) {
+                        composable(Routes.GOAL) {
                             GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.ACTIVITY) {
                             ActivityLevelScreen(onNavigate = navController::navigate)
+                        }
+                        composable(Routes.NUTRIENT_GOAL) {
+                            NutrientGoalScreen(
+                                onNavigate = navController::navigate,
+                                snackBarState = snackBarState
+                            )
                         }
                         composable(Routes.TRACKER_OVERVIEW) {
 

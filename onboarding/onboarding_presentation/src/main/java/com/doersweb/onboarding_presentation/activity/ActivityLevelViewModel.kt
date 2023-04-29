@@ -34,7 +34,7 @@ class ActivityLevelViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             preferences.saveActivityLevel(selectedActivityLevel)
-            _uiEvent.send(UiEvent.Navigate(Routes.NUTRIENT_GOAL))
+            _uiEvent.send(UiEvent.Navigate(Routes.GOAL))
         }
     }
 }

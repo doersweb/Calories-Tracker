@@ -31,10 +31,19 @@
   <string name="medium">Medium</string>
   <string name="high">High</string>
 
+  <!-- Goal screen -->
   <string name="whats_your_goal_level">Do you want to gain, lose or keep weight ?</string>
   <string name="lose">Lose</string>
   <string name="gain">Gain</string>
   <string name="keep">Keep</string>
+
+  <!-- Nutrient goal screen -->
+  <string name="what_are_your_nutrient_goals">What are your nutrient goals ?</string>
+  <string name="error_invalid_values">At-least one of the values is not valid</string>
+  <string name="error_not_100_percent">The values must add up to 100%</string>
+  <string name="percentage_protein">% protein</string>
+  <string name="percentage_carbs">% carbs</string>
+  <string name="percentage_fat">% fat</string>
 
 
 
