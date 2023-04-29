@@ -1,4 +1,4 @@
-package com.doersweb.onboarding_presentation.age
+package com.doersweb.onboarding_presentation.height
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,15 +26,15 @@ import com.doersweb.onboarding_presentation.shared_composables.ActionButton
 import com.doersweb.onboarding_presentation.shared_composables.UnitTextField
 
 @Composable
-fun AgeScreen(
+fun HeightScreen(
     snackBarState: SnackbarHostState,
     onNavigate: (UiEvent.Navigate) -> Unit,
-    ageViewModel: AgeViewModel = hiltViewModel()
+    heightViewModel: HeightViewModel= hiltViewModel()
 ){
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     LaunchedEffect(key1 = true) {
-        ageViewModel.uiEvent.collect { event ->
+        heightViewModel.uiEvent.collect { event ->
             when(event) {
                 is UiEvent.Navigate -> onNavigate(event)
                 is UiEvent.ShowSnackBar -> {
@@ -58,19 +58,19 @@ fun AgeScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(id = R.string.whats_your_age),
+                text = stringResource(id = R.string.whats_your_height),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            UnitTextField(value = ageViewModel.age, onValueChanged = ageViewModel::onAgeEnter, unit = stringResource(
-                id = R.string.unit_years
+            UnitTextField(value = heightViewModel.height, onValueChanged = heightViewModel::onHeightEnter, unit = stringResource(
+                id = R.string.unit_cms
             ))
         }
 
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { ageViewModel.onNextClick() },
+            onClick = { heightViewModel.onNextClick() },
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }

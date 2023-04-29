@@ -9,9 +9,33 @@
   <string name="whats_your_gender">What\'s your gender ?</string>
   <string name="male">Male</string>
   <string name="female">Female</string>
-  <string name="error_age_cannot_be_empty">Age cannot be empty</string>
 
   <!-- Age Screen -->
   <string name="whats_your_age">What\'s your age ?</string>
   <string name="unit_years">years</string>
+  <string name="error_age_cannot_be_empty">Age cannot be empty</string>
+
+  <!-- Age Screen -->
+  <string name="whats_your_height">What\'s your height ?</string>
+  <string name="unit_cms">cm</string>
+  <string name="error_height_cannot_be_empty">Height cannot be empty</string>
+
+  <!-- Weight Screen -->
+  <string name="whats_your_weight">What\'s your weight ?</string>
+  <string name="unit_kgs">kg</string>
+  <string name="error_weight_cannot_be_empty">Weight cannot be empty</string>
+
+  <!-- Activity level -->
+  <string name="whats_your_activity_level">What\'s your daily activity level ?</string>
+  <string name="low">Low</string>
+  <string name="medium">Medium</string>
+  <string name="high">High</string>
+
+  <string name="whats_your_goal_level">Do you want to gain, lose or keep weight ?</string>
+  <string name="lose">Lose</string>
+  <string name="gain">Gain</string>
+  <string name="keep">Keep</string>
+
+
+
 </resources>

@@ -20,8 +20,12 @@ import com.doersweb.calorietracker.navigation.navigate
 import com.doersweb.calorietracker.ui.theme.CalorieTrackerTheme
 import com.doersweb.core.navigation.Routes
 import com.doersweb.onboarding_presentation.WelcomeScreen
+import com.doersweb.onboarding_presentation.activity.ActivityLevelScreen
 import com.doersweb.onboarding_presentation.age.AgeScreen
 import com.doersweb.onboarding_presentation.gender.GenderScreen
+import com.doersweb.onboarding_presentation.goal.GoalScreen
+import com.doersweb.onboarding_presentation.height.HeightScreen
+import com.doersweb.onboarding_presentation.weight.WeightScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,22 +50,31 @@ class MainActivity : ComponentActivity() {
                             WelcomeScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.AGE) {
-                            AgeScreen(onNavigate = navController::navigate, snackBarState = snackBarState)
+                            AgeScreen(
+                                onNavigate = navController::navigate,
+                                snackBarState = snackBarState
+                            )
                         }
                         composable(Routes.GENDER) {
                             GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.HEIGHT) {
-
+                            HeightScreen(
+                                onNavigate = navController::navigate,
+                                snackBarState = snackBarState
+                            )
                         }
                         composable(Routes.WEIGHT) {
-
+                            WeightScreen(
+                                onNavigate = navController::navigate,
+                                snackBarState = snackBarState
+                            )
                         }
                         composable(Routes.NUTRIENT_GOAL) {
-
+                            GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.ACTIVITY) {
-
+                            ActivityLevelScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.TRACKER_OVERVIEW) {
 
