@@ -1,58 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
+apply from: "${rootProject.projectDir}/compose-module.gradle"
 
 android {
-    namespace = 'com.doersweb.tracker_presentation'
-    compileSdk ProjectConfig.compileSdk
-
-    defaultConfig {
-        minSdk ProjectConfig.minSdk
-        targetSdk ProjectConfig.targetSdk
-        versionCode ProjectConfig.versionCode
-        versionName ProjectConfig.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion Compose.composeCompilerVersion
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    namespace 'com.doersweb.tracker_presentation'
 }
 
 dependencies {
-    implementation Compose.compiler
-    implementation Compose.ui
-    implementation Compose.uiToolingPreview
-    implementation Compose.hiltNavigationCompose
-    implementation Compose.material
-    implementation Compose.runtime
-    implementation Compose.navigation
-    implementation Compose.viewModelCompose
-    implementation Compose.activityCompose
-
-    kapt DaggerHilt.hiltCompiler
-    implementation DaggerHilt.hiltAndroid
-
     implementation project(Modules.core)
     implementation project(Modules.trackerDomain)
     implementation Coil.coilCompose
