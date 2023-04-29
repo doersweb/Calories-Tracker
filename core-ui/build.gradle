@@ -1,0 +1,5 @@
+apply from: "${rootProject.projectDir}/compose-module.gradle"
+
+android {
+    namespace 'com.doersweb.core_ui'
+}
