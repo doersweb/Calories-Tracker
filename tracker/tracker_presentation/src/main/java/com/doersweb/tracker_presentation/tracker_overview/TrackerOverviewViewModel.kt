@@ -12,6 +12,7 @@ import com.doersweb.tracker_domain.usecase.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -23,13 +24,15 @@ class TrackerOverviewViewModel @Inject constructor(
     private val trackerUseCases: TrackerUseCases
 ) : ViewModel() {
 
+    private var getFoodsForDateJob: Job? = null
+
     var state by mutableStateOf<TrackerOverviewState>(TrackerOverviewState())
-    private val getFoodForDateJob: Job? = null
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
+        refreshFoods()
         preferences.saveShouldShowOnboarding(false)
     }
 
@@ -83,7 +86,8 @@ class TrackerOverviewViewModel @Inject constructor(
     }
 
     private fun refreshFoods() {
-        trackerUseCases.getFoodsForDate(state.date).onEach { foods ->
+        getFoodsForDateJob?.cancel()
+        getFoodsForDateJob = trackerUseCases.getFoodsForDate(state.date).onEach { foods ->
             val resultantNutrient = trackerUseCases.calculateMealNutrients(foods)
             state = state.copy(
                 totalCarbs = resultantNutrient.totalCarbs,
@@ -110,7 +114,7 @@ class TrackerOverviewViewModel @Inject constructor(
                     )
                 }
             )
-        }
+        }.launchIn(viewModelScope)
     }
 
 }

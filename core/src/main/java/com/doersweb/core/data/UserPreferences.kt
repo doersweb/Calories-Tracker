@@ -105,6 +105,6 @@ class UserPreferences(
     }
 
     override fun loadShouldShowOnboarding(): Boolean {
-        return sharedPref.getBoolean(KEY_SHOW_ONBOARDING, false)
+        return sharedPref.getBoolean(KEY_SHOW_ONBOARDING, true)
     }
 }

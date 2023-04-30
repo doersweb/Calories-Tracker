@@ -68,6 +68,11 @@
   <string name="nutrient_info">%dg - %dkcal</string>
   <string name="delete">Delete</string>
   <string name="add_meal">Add %s</string>
+  <string name="error_sometging_wrong">Something went wrong here.</string>
+  <string name="search_food">Search Food..</string>
+  <string name="kcal_per_100g">%dkcal / 100g</string>
+  <string name="track">Track Food</string>
+  <string name="no_results">No food items</string>
 
 
 </resources>

@@ -13,11 +13,14 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.doersweb.calorietracker.navigation.navigate
 import com.doersweb.calorietracker.ui.theme.CalorieTrackerTheme
+import com.doersweb.core.domain.preferences.Preferences
 import com.doersweb.core.navigation.Routes
 import com.doersweb.onboarding_presentation.WelcomeScreen
 import com.doersweb.onboarding_presentation.activity.ActivityLevelScreen
@@ -27,15 +30,23 @@ import com.doersweb.onboarding_presentation.goal.GoalScreen
 import com.doersweb.onboarding_presentation.height.HeightScreen
 import com.doersweb.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.doersweb.onboarding_presentation.weight.WeightScreen
+import com.doersweb.tracker_presentation.search.SearchScreen
 import com.doersweb.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var preferences: Preferences
+
+
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
@@ -46,7 +57,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = Routes.WELCOME
+                        startDestination = if(shouldShowOnboarding) Routes.WELCOME else Routes.TRACKER_OVERVIEW
                     ) {
                         composable(Routes.WELCOME) {
                             WelcomeScreen(onNavigate = navController::navigate)
@@ -87,8 +98,37 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.TRACKER_OVERVIEW) {
                             TrackerOverviewScreen(onNavigate = navController::navigate)
                         }
-                        composable(Routes.SEARCH) {
-
+                        composable(
+                            route = Routes.SEARCH + "/{mealName}/{dayOfMonth}/{month}/{year}",
+                            arguments = listOf(
+                                navArgument("mealName") {
+                                    type = NavType.StringType
+                                },
+                                navArgument("dayOfMonth") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("month") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("year") {
+                                    type = NavType.IntType
+                                },
+                            )
+                        ) {
+                            val mealName = it.arguments?.getString("mealName")!!
+                            val dayOfMonth = it.arguments?.getInt("dayOfMonth")!!
+                            val month = it.arguments?.getInt("month")!!
+                            val year = it.arguments?.getInt("year")!!
+                            SearchScreen(
+                                snackbarHostState = snackBarState,
+                                mealName = mealName,
+                                dayOfMonth = dayOfMonth,
+                                month = month,
+                                year = year,
+                                onNavigateUp = {
+                                    navController.navigateUp()
+                                }
+                            )
                         }
                     }
                 }
