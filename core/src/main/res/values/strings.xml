@@ -45,6 +45,29 @@
   <string name="percentage_carbs">% carbs</string>
   <string name="percentage_fat">% fat</string>
 
+  <!-- Tracker Overview -->
+  <string name="breakfast">Breakfast</string>
+  <string name="lunch">Lunch</string>
+  <string name="dinner">Dinner</string>
+  <string name="snacks">Snacks</string>
+
+  <string name="grams">g</string>
+  <string name="kcal">kcal</string>
+  <string name="your_goal">Your goal:</string>
+  <string name="carbs">Carbs</string>
+  <string name="protein">Protein</string>
+  <string name="fat">Fat</string>
+  <string name="yesterday">Yesterday</string>
+  <string name="tomorrow">Tomorrow</string>
+  <string name="previous_day">Previous day</string>
+  <string name="next_day">Next day</string>
+  <string name="today">Today</string>
+  <string name="add">Add Meal</string>
+  <string name="extend_meal">Extend</string>
+  <string name="collapse_meal">Collapse</string>
+  <string name="nutrient_info">%dg - %dkcal</string>
+  <string name="delete">Delete</string>
+  <string name="add_meal">Add %s</string>
 
 
 </resources>

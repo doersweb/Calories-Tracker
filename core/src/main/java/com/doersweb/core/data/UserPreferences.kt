@@ -14,6 +14,7 @@ import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_GENDER
 import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_GOAL_TYPE
 import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_HEIGHT
 import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_PROTEIN_RATIO
+import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_SHOW_ONBOARDING
 import com.doersweb.core.domain.preferences.Preferences.Companion.KEY_WEIGHT
 
 class UserPreferences(
@@ -95,5 +96,15 @@ class UserPreferences(
             proteinRatio = proteinRatio,
             fatRatio = fatRatio
         )
+    }
+
+    override fun saveShouldShowOnboarding(show: Boolean) {
+        sharedPref.edit()
+            .putBoolean(KEY_SHOW_ONBOARDING, show)
+            .apply()
+    }
+
+    override fun loadShouldShowOnboarding(): Boolean {
+        return sharedPref.getBoolean(KEY_SHOW_ONBOARDING, false)
     }
 }

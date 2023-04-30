@@ -27,6 +27,7 @@ import com.doersweb.onboarding_presentation.goal.GoalScreen
 import com.doersweb.onboarding_presentation.height.HeightScreen
 import com.doersweb.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.doersweb.onboarding_presentation.weight.WeightScreen
+import com.doersweb.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,7 +85,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Routes.TRACKER_OVERVIEW) {
-
+                            TrackerOverviewScreen(onNavigate = navController::navigate)
                         }
                         composable(Routes.SEARCH) {
 
